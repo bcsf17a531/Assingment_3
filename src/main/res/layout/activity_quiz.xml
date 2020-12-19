@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/drawer_layout"
     tools:context=".quiz">
 
     <LinearLayout
@@ -63,7 +64,7 @@
                         android:id="@+id/tvQue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" #1 Que for quiz ?"
+                        android:text=" Que for quiz ?"
                         android:textSize="20sp" />
 
                     <LinearLayout
@@ -118,7 +119,7 @@
                 />
             </LinearLayout>
             />
-        </LinearLayout>
+n        </LinearLayout>-->
 
     </LinearLayout>
 

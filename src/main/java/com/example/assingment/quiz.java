@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class quiz extends AppCompatActivity {
@@ -24,12 +25,27 @@ public class quiz extends AppCompatActivity {
     //list for que
     ArrayList<QuestionClass> queList = new ArrayList<>();
 
-    int conter = 0;
 
+
+    //Random rand = new Random();
+    int conter=0;
+    //= rand.nextInt(9);
+
+
+   //int counter=0;
+
+    int[] myNum={11};
+
+    int count=0;
     int sco=0;
+    int count1=1;
+    int n1=0;
+
+    int j=1;
 
     CountDownTimer tm;
 
+    ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
     DrawerLayout drawerLayout;
 
@@ -37,6 +53,8 @@ public class quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -51,18 +69,37 @@ public class quiz extends AppCompatActivity {
         btOpt4 = findViewById(R.id.btOpt4);
 
         //load data
-        queList.add(new QuestionClass("This is dummy Que 1", "ans 1", "ans 2",
-                "ans 3", "ans 4", "ans 1"));
-        queList.add(new QuestionClass("This is dummy Que 2", "ans 1", "ans 2",
-                "ans 3", "ans 4", "ans 2"));
-        queList.add(new QuestionClass("This is dummy Que 3", "ans 1", "ans 2",
-                "ans 3", "ans 4", "ans 3"));
-        queList.add(new QuestionClass("This is dummy Que 4", "ans 1", "ans 2",
-                "ans 3", "ans 4", "ans 4"));
+        queList.add(new QuestionClass("Who is current PM of Pakistan?", "Qamar Javed Bajwa", "Imran Khan",
+                "Nawaz Sharif", "Parwez Musharaf", "Imran Khan"));
+        queList.add(new QuestionClass("Who among the following persons is called ' Desert Fox '", " Walter Scott", "Erwin Rommel",
+                " Eisenhower", " Bismarck", "Erwin Rommel"));
+        queList.add(new QuestionClass("Ctrl, Shift and Alt are called .......... keys.", " modifier", "function",
+                "alphanumeric", "adjustment", "modifier"));
+        queList.add(new QuestionClass("MS-Word is an example of _____", " An operating system", "A processing device",
+                " Application software", " An input device", "Application software"));
+        queList.add(new QuestionClass("A computer cannot \"boot\" if it does not have the _____", " Compiler", "Loader",
+                " Operating system", "Assembler", "Operating system"));
+        queList.add(new QuestionClass("________ is the process of dividing the disk into tracks and sectors", " Tracking", " Formatting",
+                "  Crashing", "Allotting", " Formatting"));
+        queList.add(new QuestionClass("Junk e-mail is also called ______", " Spam", "Spoof",
+                "Sniffer Script", " Spool", "Spam"));
+        queList.add(new QuestionClass("_____are attempts by individuals to obtain confidential information from you by falsifying their identity", " Phishing trips", "Computer viruses",
+                " Phishing scams", " Spyware scams", "Phishing scams"));
+        queList.add(new QuestionClass("By default, your documents print in ________ mode", "Landscape", "Portrait",
+                " Page Setup", "  Print View", "Portrait"));
+        queList.add(new QuestionClass("Which of the following is a popular programming language for developing multimedia webpages.", "  COBOL", "Java",
+                " BASIC", " Assembler", "Java"));
+
+
+
+//        conter=myNum[j];
+
+
+
+
         //init conter
-        //Random rand = new Random();
-        conter =0;
-                //rand.nextInt(2); // Gives n such that 0 <= n < 20
+
+
 
 
         //load ques and ans
@@ -84,9 +121,16 @@ public class quiz extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Quiz Over!",
                         Toast.LENGTH_LONG).show();
                 score.setText("Score: "+ sco);
+                btOpt1.setVisibility(View.GONE);
+                btOpt2.setVisibility(View.GONE);
+                btOpt3.setVisibility(View.GONE);
+                btOpt4.setVisibility(View.GONE);
+                tvQue.setVisibility(View.GONE);
+                tvQueConter.setVisibility(View.GONE);
+                tvTimer.setVisibility(View.GONE);
 
 
-                //recreate();
+
             }
 
 
@@ -94,8 +138,38 @@ public class quiz extends AppCompatActivity {
     }
 
 
+//public int getConter(){
+//    ArrayList<Integer> list = new ArrayList<Integer>();
+//    for (int i=0; i<10; i++) {
+//        list.add(new Integer(i));
+//    }
+//    Collections.shuffle(list);
+//    for (int i=0; i<10; i++) {
+//        myNum[i]=list.get(i);
+//    }
+//    counter=myNum[j];
+//    j=j+1;
+//    return counter;
+//}
+
+
+
 
     public void loadQuetions(int n) {
+
+
+        Random random = new Random();
+
+
+        while (arrayList.size() < 10) { // how many numbers u need - it will 6
+            int a = random.nextInt(10); // this will give numbers between 1 and 50.
+
+            if (!arrayList.contains(a)) {
+                arrayList.add(a);
+                n=a;
+            }
+        }
+
 
         final QuestionClass q = queList.get(n);
 
@@ -123,7 +197,9 @@ public class quiz extends AppCompatActivity {
 
                     if (conter < (queList.size() - 1)) {
                         tm.cancel();
-                        conter++;
+
+                       conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Question Completed!",
@@ -137,9 +213,11 @@ public class quiz extends AppCompatActivity {
                 } else {
                     Toast.makeText(getBaseContext(), "Wrong Answer!",
                             Toast.LENGTH_LONG).show();
-                    if (conter < (queList.size() - 1)) {
+                    if (conter < (queList.size() - 1))  {
                         tm.cancel();
+
                         conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Question Completed!",
@@ -167,7 +245,9 @@ public class quiz extends AppCompatActivity {
 
                     if (conter < (queList.size() - 1)) {
                         tm.cancel();
+
                         conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Que Completed!", Toast.LENGTH_SHORT).show();
@@ -181,7 +261,9 @@ public class quiz extends AppCompatActivity {
 
                     if (conter < (queList.size() - 1)) {
                         tm.cancel();
+
                         conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Question Completed!",
@@ -207,6 +289,7 @@ public class quiz extends AppCompatActivity {
                     if (conter < (queList.size() - 1)) {
                         tm.cancel();
                         conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Que Completed!", Toast.LENGTH_SHORT).show();
@@ -220,7 +303,9 @@ public class quiz extends AppCompatActivity {
 
                     if (conter < (queList.size() - 1)) {
                         tm.cancel();
+
                         conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Question Completed!",
@@ -245,7 +330,9 @@ public class quiz extends AppCompatActivity {
                     sco=sco+1;
                     if (conter < (queList.size() - 1)) {
                         tm.cancel();
+
                         conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Que Completed!", Toast.LENGTH_SHORT).show();
@@ -260,7 +347,9 @@ public class quiz extends AppCompatActivity {
 
                     if (conter < (queList.size() - 1)) {
                         tm.cancel();
+
                         conter++;
+
                         loadQuetions(conter);
                     } else {
                         Toast.makeText(getBaseContext(), "All Question Completed!",
